@@ -3,25 +3,21 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("personnel", {
+    await queryInterface.createTable("passenger", {
       id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         primaryKey: true
       },
-      personId: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
-      },
       name: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      role: {
-        type: Sequelize.ENUM("Pilot", "Cabin Crew", "Security", "Ground Staff", "Customer Service"),
-        allowNull: false
+      passportId: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
       },
       email: {
         type: Sequelize.STRING,
@@ -32,6 +28,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
+      },
+      seatPreference: {
+        type: Sequelize.ENUM("Window", "Aisle", "Extra Legroom", "No Preference"),
+        defaultValue: "No Preference"
+      },
+      mealPreference: {
+        type: Sequelize.STRING,
+        defaultValue: "No Preference"
       },
       isActive: {
         type: Sequelize.BOOLEAN,
@@ -50,7 +54,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("personnel");
+    await queryInterface.dropTable("passenger");
   },
 };
 
