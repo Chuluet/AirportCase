@@ -5,7 +5,13 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const bodyParser = require("body-parser")
+
 const flightRoutes = require("./routes/managementFlightRoute");
+
+
+const baggageRoutes = require("./routes/baggageManagementRoutes");
+//const pedidoRoutes = require("./routes/pedidoRoutes");
+//const authRoutes = require("./routes/authRoutes");
 
 
 const app = express();
@@ -18,7 +24,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 
 
+
 app.use("/api/flights", flightRoutes)
+
+
+//app.use("/auth", authRoutes)
+app.use("/api/baggage", baggageRoutes)
+//app.use("/api/pedidos", pedidoRoutes)
 
 
 const PORT = process.env.PORT || 3000;
