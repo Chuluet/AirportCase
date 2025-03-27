@@ -2,14 +2,14 @@
 const { Model, DataTypes } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  class flightDetail extends Model {
+  class FlightDetail extends Model {
     static associate(models) {
-      flightDetail.belongsTo(models.passenger, { foreignKey: "passengerFk", as: "passenger" });
-      flightDetail.belongsTo(models.flight, { foreignKey: "flightFk", as: "flights" });
+      FlightDetail.belongsTo(models.Passenger, { foreignKey: "passengerFk", as: "passenger" });
+      FlightDetail.belongsTo(models.Flight, { foreignKey: "flightFk", as: "flights" });
     }
   }
 
-  flightDetail.init(
+  FlightDetail.init(
     {
       id: {
         type: DataTypes.UUID,
@@ -38,11 +38,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "flightDetail",
+      modelName: "FlightDetail",
       tableName: "flightDetail",
       timestamps: true,
     }
   );
 
-  return flightDetail;
+  return FlightDetail;
 };
