@@ -4,7 +4,7 @@ const { Model, DataTypers, DataTypes } = require('sequelize')
 module.exports = (sequelize) => {
     class Personnel extends Model {
         static associate(models) {
-            // Definir asociaciones aquí si es necesario
+         
         }
     }
     Personnel.init({
