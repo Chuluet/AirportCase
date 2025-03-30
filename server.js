@@ -7,9 +7,10 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser")
 
 const flightRoutes = require("./routes/managementFlightRoute");
-
-
 const baggageRoutes = require("./routes/baggageManagementRoutes");
+const airportServiceRoutes = require("./routes/airportServiceRoutes");
+const passengerRoutes = require("./routes/passengerRoutes");
+const personnelRoutes = require("./routes/personnelRoutes");
 //const pedidoRoutes = require("./routes/pedidoRoutes");
 //const authRoutes = require("./routes/authRoutes");
 
@@ -31,6 +32,9 @@ app.use("/api/flights", flightRoutes)
 //app.use("/auth", authRoutes)
 app.use("/api/baggage", baggageRoutes)
 //app.use("/api/pedidos", pedidoRoutes)
+app.use("/api/airportService", airportServiceRoutes)
+app.use("/api/passenger", passengerRoutes)
+app.use("/api/personnel", personnelRoutes)
 
 
 const PORT = process.env.PORT || 3000;

@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const passengerController = require("../controllers/pessengerController");
+const passengerController = require("../controllers/passengerController");
 
-router.get("/", passengerController.getpassenger);
-router.post("/add", passengerController.addpassenger);
-router.post("/update/:id", passengerController.updatepassenger);
-router.post("/changeStatus/:id", passengerController.changepassengerStatus);
+router.get("/", passengerController.getPassengers);
+router.post("/addPassenger", passengerController.addPassenger);
+router.post("/updatePassenger/:id", passengerController.updatePassenger);
+router.post("/changePassengerStatus/:id", passengerController.changePassengerStatus);
+router.delete('/deletePassenger/:id', passengerController.deletePassenger);
+
 
 module.exports = router;

@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 module.exports = (sequelize) => {
   class Flight extends Model {
     static associate(models) {
-      // Definir asociaciones aquí si es necesario
+      Flight.hasMany(models.FlightDetail, {foreignKey: "flightFk", as: "flightDetail"});
     }
 
     // Método para comparar la contraseña ingresada con la almacenada
