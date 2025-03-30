@@ -12,7 +12,7 @@ const airportServiceRoutes = require("./routes/airportServiceRoutes");
 const passengerRoutes = require("./routes/passengerRoutes");
 const personnelRoutes = require("./routes/personnelRoutes");
 //const pedidoRoutes = require("./routes/pedidoRoutes");
-//const authRoutes = require("./routes/authRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 
 const app = express();
@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use("/api/flights", flightRoutes)
 
 
-//app.use("/auth", authRoutes)
+app.use("/auth", authRoutes)
 app.use("/api/baggage", baggageRoutes)
 //app.use("/api/pedidos", pedidoRoutes)
 app.use("/api/airportService", airportServiceRoutes)
