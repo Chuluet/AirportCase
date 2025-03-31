@@ -7,5 +7,6 @@ router.get("/",authService, airportServicesController.getAirportServices);
 router.post("/add",authService, airportServicesController.addAirportServices);
 router.post("/update/:id", authService,airportServicesController.updateAirportServices);
 router.post("/changeStatus/:id",authService, airportServicesController.changeAirportServicesStatus);
+router.delete("/delete/:id",authService, airportServicesController.deleteAiportServices);
 
 module.exports = router;

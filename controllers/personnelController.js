@@ -74,5 +74,19 @@ const changePersonnelStatus = async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 };
+const deletePersonnel = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const personnel = await Personnel.findByPk(id);
+        if (!personnel) {
+            return res.status(404).json({ message: "Personnel not found" });
+        }
+        await personnel.destroy();
 
-module.exports = { getPersonnel, addPersonnel, updatePersonnel, changePersonnelStatus };
+        return res.status(200).json({ message: "Personnel deleted" });
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+}
+
+module.exports = { getPersonnel, addPersonnel, updatePersonnel, changePersonnelStatus,deletePersonnel };

@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
       Flight.hasMany(models.FlightDetail, {foreignKey: "flightFk", as: "flightDetail"});
     }
 
-    // Método para comparar la contraseña ingresada con la almacenada
+    
     
   }
 
@@ -73,7 +73,7 @@ module.exports = (sequelize) => {
       tableName: "flight",
       timestamps: true,
 
-      // Hook para cifrar la contraseña antes de guardar
+      
      
     }
   );

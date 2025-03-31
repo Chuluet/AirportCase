@@ -99,5 +99,19 @@ const changeFlightStatus = async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 };
+const deleteflight = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const flight = await Flight.findByPk(id);
+        if (!flight) {
+            return res.status(404).json({ message: "flight not found" });
+        }
+        await flight.destroy();
 
-module.exports = { getFlights, addFlight, updateFlight, changeFlightStatus }
+        return res.status(200).json({ message: "flight deleted" });
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+}
+
+module.exports = { getFlights, addFlight, updateFlight, changeFlightStatus,deleteflight }

@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      locarion: {
+      location: {
         type: Sequelize.STRING,
         allowNull: false
       },

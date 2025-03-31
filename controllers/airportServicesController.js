@@ -72,5 +72,19 @@ const changeAirportServicesStatus = async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 };
+const deleteAiportServices = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const airportServices = await AirportServices.findByPk(id);
+        if (!airportServices) {
+            return res.status(404).json({ message: "AirportServices not found" });
+        }
+        await airportServices.destroy();
 
-module.exports = { getAirportServices, addAirportServices, updateAirportServices, changeAirportServicesStatus };
+        return res.status(200).json({ message: "AirportServices deleted" });
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+}
+
+module.exports = { getAirportServices, addAirportServices, updateAirportServices, changeAirportServicesStatus,deleteAiportServices };
