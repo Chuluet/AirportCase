@@ -13,6 +13,7 @@ const passengerRoutes = require("./routes/passengerRoutes");
 const personnelRoutes = require("./routes/personnelRoutes");
 //const pedidoRoutes = require("./routes/pedidoRoutes");
 const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 
 const app = express();
@@ -35,6 +36,8 @@ app.use("/api/baggage", baggageRoutes)
 app.use("/api/airportService", airportServiceRoutes)
 app.use("/api/passenger", passengerRoutes)
 app.use("/api/personnel", personnelRoutes)
+app.use("/api/user", userRoutes)
+
 
 
 const PORT = process.env.PORT || 3000;

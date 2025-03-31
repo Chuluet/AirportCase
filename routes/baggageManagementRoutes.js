@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const baggageController = require("../controllers/baggageController");
+const authService =  require("../services/authService");
 
-router.get("/", baggageController.getBaggage);
-router.post("/add", baggageController.addBaggage);
-router.post("/update/:id", baggageController.updateBaggage);
-router.post("/changeStatus/:id", baggageController.changeBaggageStatus);
-router.post("/changeIncidentDetails/:id", baggageController.changeBaggageIncidentDetails);
+router.get("/", authService,baggageController.getBaggage);
+router.post("/add",authService, baggageController.addBaggage);
+router.post("/update/:id",authService, baggageController.updateBaggage);
+router.post("/changeStatus/:id",authService, baggageController.changeBaggageStatus);
+router.post("/changeIncidentDetails/:id",authService, baggageController.changeBaggageIncidentDetails);
 
 module.exports = router;

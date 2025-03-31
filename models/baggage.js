@@ -5,6 +5,7 @@ module.exports = (sequelize) => {
     class Baggage extends Model {
         static associate(models) {
             Baggage.belongsTo(models.Passenger, { foreignKey: "passengerFk", as: "passenger" });
+            
         }
     }
     Baggage.init({
