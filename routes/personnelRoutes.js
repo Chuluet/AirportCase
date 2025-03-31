@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const personnelController = require("../controllers/personnelController");
+const authService =  require("../services/authService");
 
-router.get("/", personnelController.getPersonnel);
-router.post("/add", personnelController.addPersonnel);
-router.post("/update/:id", personnelController.updatePersonnel);
-router.post("/changeStatus/:id", personnelController.changePersonnelStatus);
+router.get("/", authService,personnelController.getPersonnel);
+router.post("/add", authService, personnelController.addPersonnel);
+router.post("/update/:id",authService, personnelController.updatePersonnel);
+router.post("/changeStatus/:id",authService, personnelController.changePersonnelStatus);
 
 module.exports = router;
