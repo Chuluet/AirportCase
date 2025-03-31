@@ -4,7 +4,7 @@ const { Model, DataTypes } = require('sequelize')
 module.exports = (sequelize) => {
     class Baggage extends Model {
         static associate(models) {
-            // Definir asociaciones aquí si es necesario
+            Baggage.belongsTo(models.Passenger, { foreignKey: "passengerFk", as: "passenger" });
         }
     }
     Baggage.init({
@@ -13,12 +13,12 @@ module.exports = (sequelize) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
-        passengerId: {
+        passengerFk: {
             type: DataTypes.UUID,
             allowNull:false
             
         },
-        flightId: {
+        flightFk: {
             type: DataTypes.UUID,
             allowNull:false
         },

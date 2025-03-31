@@ -9,12 +9,12 @@ module.exports = {
                   defaultValue: Sequelize.UUIDV4,
                   primaryKey: true
               },
-              passengerId: {
+              passengerFk: {
                   type: Sequelize.UUID,
                   allowNull:false
                   
               },
-              flightId: {
+              flightFk: {
                   type: Sequelize.UUID,
                   allowNull:false
               },
