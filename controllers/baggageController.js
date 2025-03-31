@@ -1,5 +1,8 @@
 const { Baggage } = require("../models");
+const { Passenger } = require("../models");
+const { Flight } = require("../models");
 const baggage = require("../models/baggage");
+
 
 const getBaggage = async (req, res) => {
     try {
@@ -12,11 +15,17 @@ const getBaggage = async (req, res) => {
 
 const addBaggage = async (req, res) => {
     try {
-        const { passengerId,flightId,tagNumber, weight, dimensions, status, checkInLocation, incidentDetails } = req.body;
+        const { passengerFk,flightFk,tagNumber, weight, dimensions, status, checkInLocation, incidentDetails } = req.body;
+
+        const passenger = await Passenger.findByPk(passengerFk);
+        if(!passenger)return res.status(404).json({ message: "passengerId not found" });
+        const flight = await Flight.findByPk(flightFk);
+        if(!flight)return res.status(404).json({ message: "FlightId not found" });
+
         
         const baggage = await Baggage.create({
-            passengerId,
-            flightId,
+            passengerFk,
+            flightFk,
             tagNumber, 
             weight, 
             dimensions, 
@@ -36,15 +45,26 @@ const addBaggage = async (req, res) => {
 const updateBaggage = async (req, res) => {
     try {
         const { id } = req.params;
-        const { passengerId,flightId, weight, dimensions, status, currentLocation,incidentDetails } = req.body;
+        const { passengerFk,flightFk, weight, dimensions, status, currentLocation,incidentDetails } = req.body;
 
         const baggage = await Baggage.findByPk(id);
         if (!baggage) {
             return res.status(404).json({ message: "Baggage not found" });
         }
 
-        if (passengerId) baggage.passengerId = passengerId;
-        if (flightId) baggage.flightId = flightId;
+
+        if (passengerFk){
+            const passenger = await Passenger.findByPk(passengerFk);
+            if(!passenger)return res.status(404).json({ message: "passengerId not found" });
+            baggage.passengerId = passengerFk;   
+        } 
+        
+        
+        if (flightFk){
+            const flight = await Flight.findByPk(flightFk);
+            if(!flight)return res.status(404).json({ message: "FlightId not found" });           
+            baggage.flightFk = flightFk;
+        } 
        
         if (weight) baggage.weight = weight;
         if (dimensions) baggage.dimensions = dimensions;

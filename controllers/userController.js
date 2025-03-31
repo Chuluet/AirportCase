@@ -75,7 +75,7 @@ const changeUserStatus = async (req, res) => {
         }
 
         
-        user.state = stete;
+        user.state = state;
         await user.save();
 
         res.json({ message: `State updated to ${state}`, user });

@@ -25,7 +25,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        locarion: {
+        location: {
             type: DataTypes.STRING,
             allowNull: false
         },
