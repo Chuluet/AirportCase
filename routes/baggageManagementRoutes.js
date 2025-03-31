@@ -8,5 +8,6 @@ router.post("/add",authService, baggageController.addBaggage);
 router.post("/update/:id",authService, baggageController.updateBaggage);
 router.post("/changeStatus/:id",authService, baggageController.changeBaggageStatus);
 router.post("/changeIncidentDetails/:id",authService, baggageController.changeBaggageIncidentDetails);
+router.post("/delete/:id",authService, baggageController.deleteBaggage);
 
 module.exports = router;

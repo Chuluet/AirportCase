@@ -109,6 +109,20 @@ const changeBaggageIncidentDetails = async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 };
+const deleteBaggage = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const baggage = await Baggage.findByPk(id);
+        if (!baggage) {
+            return res.status(404).json({ message: "baggage not found" });
+        }
+        await baggage.destroy();
+
+        return res.status(200).json({ message: "baggage deleted" });
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+}
 
 
-module.exports = { getBaggage, addBaggage, updateBaggage, changeBaggageStatus,changeBaggageIncidentDetails };
+module.exports = { getBaggage, addBaggage, updateBaggage, changeBaggageStatus,changeBaggageIncidentDetails,deleteBaggage };
