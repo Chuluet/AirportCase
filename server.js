@@ -11,7 +11,6 @@ const baggageRoutes = require("./routes/baggageManagementRoutes");
 const airportServiceRoutes = require("./routes/airportServiceRoutes");
 const passengerRoutes = require("./routes/passengerRoutes");
 const personnelRoutes = require("./routes/personnelRoutes");
-//const pedidoRoutes = require("./routes/pedidoRoutes");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 

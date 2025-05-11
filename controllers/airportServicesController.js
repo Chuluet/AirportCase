@@ -8,6 +8,20 @@ const getAirportServices = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+const getAirportServiceById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const service = await AirportServices.findByPk(id);
+        
+        if (!service) {
+            return res.status(404).json({ message: "Servicio aeroportuario no encontrado" });
+        }
+        
+        res.status(200).json(service);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 
 const addAirportServices = async (req, res) => {
     try {
@@ -87,4 +101,4 @@ const deleteAiportServices = async (req, res) => {
     }
 }
 
-module.exports = { getAirportServices, addAirportServices, updateAirportServices, changeAirportServicesStatus,deleteAiportServices };
+module.exports = { getAirportServices, addAirportServices, updateAirportServices, changeAirportServicesStatus,deleteAiportServices, getAirportServiceById};

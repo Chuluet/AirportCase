@@ -8,6 +8,20 @@ const getPersonnel = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+const getPersonnelById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const personnel = await Personnel.findByPk(id);
+        
+        if (!personnel) {
+            return res.status(404).json({ message: "personal no encontrado" });
+        }
+        
+        res.status(200).json(personnel);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 
 const addPersonnel = async (req, res) => {
     try {
@@ -89,4 +103,4 @@ const deletePersonnel = async (req, res) => {
     }
 }
 
-module.exports = { getPersonnel, addPersonnel, updatePersonnel, changePersonnelStatus,deletePersonnel };
+module.exports = { getPersonnel, addPersonnel, updatePersonnel, changePersonnelStatus,deletePersonnel, getPersonnelById };

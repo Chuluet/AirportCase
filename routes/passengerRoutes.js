@@ -4,10 +4,11 @@ const passengerController = require("../controllers/passengerController");
 const authService =  require("../services/authService");
 
 router.get("/",authService, passengerController.getPassengers);
-router.post("/addPassenger",authService, passengerController.addPassenger);
-router.post("/updatePassenger/:id",authService, passengerController.updatePassenger);
-router.post("/changePassengerStatus/:id",authService, passengerController.changePassengerStatus);
-router.delete('/deletePassenger/:id',authService, passengerController.deletePassenger);
+router.get("/:id",authService, passengerController.getPassengerById);
+router.post("/add",authService, passengerController.addPassenger);
+router.post("/update/:id",authService, passengerController.updatePassenger);
+router.post("/changerStatus/:id",authService, passengerController.changePassengerStatus);
+router.delete('/delete/:id',authService, passengerController.deletePassenger);
 
 
 module.exports = router;

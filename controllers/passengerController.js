@@ -17,7 +17,20 @@ const getPassengers = async (req, res) => {
         return res.status(500).json({ error: error.message })
     }
 };
-
+const getPassengerById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const passenger = await Passenger.findByPk(id);
+        
+        if (!passenger) {
+            return res.status(404).json({ message: "Pasajero no encontrado" });
+        }
+        
+        res.status(200).json(passenger);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 const addPassenger = async (req, res) => {
     try {
         const { name, passportId, email, phone, seatPreference, mealPreference, isActive, flightIds } = req.body;
@@ -130,4 +143,4 @@ const deletePassenger = async (req, res) => {
         return res.status(500).json({ error: error.message });
     }
 }
-module.exports = { getPassengers, addPassenger, updatePassenger, changePassengerStatus, deletePassenger };
+module.exports = { getPassengers, addPassenger, updatePassenger, changePassengerStatus, deletePassenger, getPassengerById };
