@@ -4,13 +4,17 @@ const bcrypt = require("bcryptjs");
 
 const login = async (req, res) => {
   try {
-
     const { email, password } = req.body;
 
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
       return res.status(400).json({ error: "Personal no encontrado." });
+    }
+
+    // Verificar estado del usuario
+    if (user.state !== "Active") {
+      return res.status(403).json({ error: "Usuario inactivo. No puede iniciar sesión." });
     }
 
     // Validar contraseña
